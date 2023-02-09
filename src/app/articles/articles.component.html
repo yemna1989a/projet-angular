@@ -1,0 +1,116 @@
+
+<div>
+    
+    <div class="headers" >
+        <h2 class="table-title">Gestion Des Articles</h2>  
+    </div>
+    <div style="padding-left: 25px;">
+        <button class="btn btn-success" style="width:100px;" (click)="openForm(null)">New</button>
+     </div>   
+     <div>
+     </div>
+     <div class="col-md-2">
+        Filtre par catégorie <select class="form-control col-lg-8"
+        [(ngModel)]="term">
+       
+        <option *ngFor="let c of scategories">{{c.nomscategorie}}</option>
+        </select>
+        </div>
+        
+<table class="table caption-top">
+    <thead>
+      <tr>
+        
+        <th scope="col">Designation</th>
+        <th scope="col">Image</th>
+        <th scope="col">Prix </th>
+        <th scope="col">Qte en Stock</th>
+        <th scope="col">Référence</th>
+        <th scope="col">Marque</th>
+        <th scope="col">scategorieID</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr *ngFor ="let art of articles | filter:term">
+         <td>{{art.designation}}</td>   
+        <td><img src={{art.imageart}} alt="" width="130" height="70"/></td>
+       <td>{{art.prix}}</td>
+        <td>{{art.qtestock}}</td>
+        <td>{{art.reference}}</td>
+        <td>{{art.marque}}</td>
+
+
+        <td>{{art.scategorieID}}</td>
+        
+        <td><button class="btn btn-outline-primary" (click)=" editArticle(art)">Edit</button>
+        </td> 
+        <td><button class="btn btn-outline-danger" (click)="deletearticle(art._id)">Delete</button></td>     
+        </tr>
+        </tbody>
+        </table>
+        </div>
+
+
+    <div class="form-wrapper" *ngIf="showForm">
+        <div class="mobile-form">        
+    <div>
+        <h2 class="text-center text-info">{{formHeader}}</h2>
+        <div class="group">
+        <label for="">Nom article</label>
+        <input type="text" class="form-control" [(ngModel)]="designation"
+        name="designation">
+        </div>
+
+        <div class="group">
+            <label for="">Image</label>
+            <input type="text" class="form-control" [(ngModel)]="imageart"
+            name="imageart" >
+            <img src={{imageart}} height="50" width="100">
+            </div>
+    
+    
+    
+    
+    
+            
+    
+    
+            <div class="group">
+                <label for="">prix</label>
+                <input type="text" class="form-control" [(ngModel)]="prix"
+                name="prix" >
+                </div>
+              
+                    <div class="group">
+                        <label for="">qte stk</label>
+                        <input type="text" class="form-control" [(ngModel)]="qtestock"
+                        name="qtestock" >
+                        </div>   
+                        <div class="group">
+                            <label for="">Marque</label>
+                            <input type="text" class="form-control" [(ngModel)]="marque"
+                            name="marque" >
+                            </div>   
+                            <div class="group">
+                                <label for="">Reference</label>
+                                <input type="text" class="form-control" [(ngModel)]="reference"
+                                name="reference" >
+                                </div>   
+                                
+                                    <div class="group">
+                                        <div class="col-sm-12">
+                                        <select name="scategorieID" class="form-control" placeholder="Sous Categorie" id="scategorie"
+                                        [(ngModel)]="scategorieID">
+                                        <option *ngFor="let d of scategories" value="{{d._id}}"> {{d.nomscategorie}}</option>
+                                          
+                                    </select>
+                                   </div> </div> 
+
+                        <div class="action">
+                            <button class="btn btn-primary save" (click)=" sauvegarder()">Enregistrer</button>
+                            <button class="btn btn-danger cancel" (click)="closeForm()" >Annuler</button>
+                            </div>
+                            </div>
+                        </div>

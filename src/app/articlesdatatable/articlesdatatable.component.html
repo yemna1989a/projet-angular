@@ -1,0 +1,92 @@
+
+<div >
+    <div class="headers">
+        
+    <h2 class="table-title">Gestion des articles</h2>
+    </div>
+    <table datatable class="table table-hover table-bordered" *ngIf="articles">
+    <thead>
+    <tr>
+    <th>Référence</th>
+    <th>Désignation</th>
+    <th>Prix</th>
+    <th>Marque</th>
+    <th>Quantité</th>
+    <th>Image</th>
+    <th>action1</th>
+    <th>action 2</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor ="let art of articles">
+    <td>{{art.reference}}</td>
+    <td>{{art.designation}}</td>
+    <td>{{art.prix}} DT</td>
+    <td>{{art.marque}}</td>
+    <td>{{art.qtestock}}</td>
+    <td><img src={{art.imageart}} alt="" width="100" height="50"/></td>
+    
+    <td><button class="btn btn-outline-primary" (click)=" editArticle(art)">Edit</button>
+    </td> 
+    <td><button class="btn btn-outline-danger" (click)="deletearticle(art._id)">Delete</button></td>
+     
+    </tr>
+    </tbody>
+    </table>
+    </div>
+  <div class="form-wrapper" *ngIf="showForm">
+        <div class="mobile-form">        
+    <div>
+        <h2 class="text-center text-info">{{formHeader}}</h2>
+        <div class="group">
+        <label for="">Nom article</label>
+        <input type="text" class="form-control" [(ngModel)]="designation"
+        name="designation">
+        </div>
+
+        <div class="group">
+            <label for="">Image</label>
+            <input type="text" class="form-control" [(ngModel)]="imageart"
+            name="imageart" >
+            <img src={{imageart}} height="50" width="100">
+            </div>
+    
+    
+    
+    
+    
+            
+    
+    
+            <div class="group">
+                <label for="">prix</label>
+                <input type="text" class="form-control" [(ngModel)]="prix"
+                name="prix" >
+                </div>
+              
+                    <div class="group">
+                        <label for="">qte stk</label>
+                        <input type="text" class="form-control" [(ngModel)]="qtestock"
+                        name="qtestock" >
+                        </div>   
+                        <div class="group">
+                            <label for="">Marque</label>
+                            <input type="text" class="form-control" [(ngModel)]="marque"
+                            name="marque" >
+                            </div>   
+                            <div class="group">
+                                <label for="">Reference</label>
+                                <input type="text" class="form-control" [(ngModel)]="reference"
+                                name="reference" >
+                                </div>   
+                                <div class="group">
+                                    <label for="">Sous categorie</label>
+                                    <input type="text" class="form-control" [(ngModel)]="scategorieID"
+                                    name="scategorieID" >
+                                    </div>          
+                        <div class="action">
+                            <button class="btn btn-primary save" (click)=" sauvegarder()">Enregistrer</button>
+                            <button class="btn btn-danger cancel" (click)="closeForm()" >Annuler</button>
+                            </div>
+                            </div>
+                        </div>  

@@ -1,0 +1,71 @@
+
+
+<div>
+    <div class="headers" >
+        <h2 class="table-title">Gestion Des SCategories </h2>  
+    </div>
+    <div style="padding-left: 25px;">
+        <button class="btn btn-success" style="width:100px;" (click)="openForm(null)">New</button>
+     </div>   
+     <div>
+     </div>
+<table class="table caption-top">
+    <thead>
+      <tr>
+        
+        <th scope="col">categorieID</th>
+        <th scope="col">imagescat</th>
+        <th scope="col">nomscategorie </th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr *ngFor ="let scat of scategories">
+         <td>{{scat.categorieID}}</td>   
+        <td><img src={{scat.imagescat}} alt="" width="130" height="70"/></td>
+       <td>{{scat.nomscategorie}}</td>
+        
+
+        <td><button class="btn btn-outline-primary" (click)=" editscategorie(scat)">Edit</button>
+        </td> 
+        <td><button class="btn btn-outline-danger" (click)="deletescategorie(scat._id)">Delete</button></td>     
+        </tr>
+        </tbody>
+        </table>
+        </div>
+
+
+    <div class="form-wrapper" *ngIf="showForm">
+        <div class="mobile-form">        
+    <div>
+        <h2 class="text-center text-info">{{formHeader}}</h2>
+        <div class="group">
+        <label for="">Nom scategorie</label>
+        <input type="text" class="form-control" [(ngModel)]="nomscategorie"
+        name="nomscategorie">
+        </div>
+
+    <div class="group">
+    <label for="">Image</label>
+    <input type="text" class="form-control" [(ngModel)]="imagescat"
+    name="imagescat" >
+    <img src={{imagescat}} height="50" width="100">
+    </div>
+    
+    
+    
+    <div class="group">
+    <label for=""> categorie ID</label>
+    <input type="text" class="form-control" [(ngModel)]="categorieID"
+    name="categorieID" >
+    </div>
+              
+                    
+                                      
+     <div class="action">
+    <button class="btn btn-primary save" (click)=" sauvegarder()">Enregistrer</button>
+    <button class="btn btn-danger cancel" (click)="closeForm()" >Annuler</button>
+    </div>
+    </div>
+    </div>
